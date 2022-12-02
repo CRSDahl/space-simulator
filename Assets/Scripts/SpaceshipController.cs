@@ -29,11 +29,12 @@ public class SpaceshipController : MonoBehaviour
     {
         m_Rigidbody.angularVelocity = Vector3.zero;
         timer_display.text = "Time left: " + +Mathf.Round((30 - Time.realtimeSinceStartup));
-        fuel_display.text = "Fuel: "+Mathf.Round((fuelLevel/fuelLevelFull)*100);
-        speed_display.text = "Speed: "+Mathf.Round(m_Rigidbody.velocity.magnitude);
+        fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel / fuelLevelFull) * 100);
+        speed_display.text = "Speed: " + Mathf.Round(m_Rigidbody.velocity.magnitude);
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if(fuelLevel > 0){
+            if (fuelLevel > 0)
+            {
                 m_Rigidbody.AddRelativeForce((Vector3.left + Vector3.forward) * m_Thrust);
                 fuelLevel -= 0.1f;
             }
@@ -45,17 +46,18 @@ public class SpaceshipController : MonoBehaviour
                 m_Rigidbody.AddRelativeForce((Vector3.right + Vector3.forward) * m_Thrust);
                 fuelLevel -= 0.1f;
             }
-        }        
+        }
 
         foreach (GameObject planet in planets)
         {
-            if((planet.transform.position - transform.position).magnitude < 5000) {
+            if ((planet.transform.position - transform.position).magnitude < 5000)
+            {
                 Vector3 force = ((planet.transform.position - transform.position).normalized * 120000000) / Mathf.Pow((planet.transform.position - transform.position).magnitude, 2.0f);
                 //if((m_Rigidbody.velocity + force).magnitude < m_Rigidbody.velocity.magnitude) {
                 //    force *= 0.1f;
                 //}
-                m_Rigidbody.AddForce(force); 
-        }
+                m_Rigidbody.AddForce(force);
+            }
         }
     }
 }
