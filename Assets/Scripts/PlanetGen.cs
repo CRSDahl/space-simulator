@@ -71,12 +71,12 @@ public class PlanetGen : MonoBehaviour
             }
 
         }
-        //This will place planets in the grid.
+        //This will place planets in the grid/world.
         BigBang(grid);
 
     }
     
-    //We never want two planets on the same row since they could orbit on the same direction
+    //We never want two planets on the same row since they could orbit on the same direction and crash into another
     bool ArePlanetsOnTheSameRow(List<TileType>[,] grid)
     {
         int count = 0;
@@ -103,6 +103,52 @@ public class PlanetGen : MonoBehaviour
 
         }
 
+        return false;
+
+    }
+    //Code I still need to review should work ideally but good to go voer it since it still needs to be modified to our specs.
+    bool CheckConsistency(List<TileType>[,] grid, int[] cell_pos, TileType t)
+    {
+        int w = cell_pos[0];
+        int l = cell_pos[1];
+
+        List<TileType> old_assignment = new List<TileType>();
+        old_assignment.AddRange(grid[w, l]);
+        grid[w, l] = new List<TileType> { t };
+
+        bool areWeConsistent = !ArePlanetsOnTheSameRow(grid);
+
+        grid[w, l] = new List<TileType>();
+        grid[w, l].AddRange(old_assignment);
+        return areWeConsistent;
+    }
+
+    bool BackTrackingSearch(List<TileType>[,] grid,  List<int[]> unassigned)
+    {
+
+        if (function_calls++ > 100000)       
+            return false;
+
+        if (unassigned.Count == 0)
+            return true;
+
+        int[] cell_pos = unassigned[0];
+        unassigned.RemoveAt(0);
+        
+        foreach(TileType t in grid[cell_pos[0],cell_pos[1]]){
+
+            if(CheckConsistency(grid ,cell_pos , t )){
+
+                List<TileType> old_assignment = new List<TileType>();
+                old_assignment.AddRange(grid[cell_pos[0],cell_pos[1]]);
+                grid[cell_pos[0],cell_pos[1]] = new List<TileType> { t };
+                if(BackTrackingSearch(grid, unassigned)){
+                    return true;
+                }                
+                grid[cell_pos[0],cell_pos[1]] = old_assignment;
+
+            }
+        }
         return false;
 
     }
