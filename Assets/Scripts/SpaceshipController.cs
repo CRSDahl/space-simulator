@@ -31,21 +31,52 @@ public class SpaceshipController : MonoBehaviour
         timer_display.text = "Time left: " + +Mathf.Round((30 - Time.realtimeSinceStartup));
         fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel / fuelLevelFull) * 100);
         speed_display.text = "Speed: " + Mathf.Round(m_Rigidbody.velocity.magnitude);
-        if (Input.GetKey(KeyCode.LeftArrow))
+
+        if (Input.GetKey(KeyCode.UpArrow)) //Switch thrusters/ direction force is being added
+        {
+
+            if (Input.GetKey(KeyCode.LeftArrow))
         {
             if (fuelLevel > 0)
             {
-                m_Rigidbody.AddRelativeForce((Vector3.left + Vector3.forward) * m_Thrust);
-                fuelLevel -= 0.1f;
+                m_Rigidbody.AddRelativeForce(Vector3.left * (m_Thrust * 1.5f));
+                fuelLevel -= 0.5f;
             }
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             if (fuelLevel > 0)
             {
-                m_Rigidbody.AddRelativeForce((Vector3.right + Vector3.forward) * m_Thrust);
-                fuelLevel -= 0.1f;
+                m_Rigidbody.AddRelativeForce(Vector3.right * (m_Thrust * 1.5f));
+                fuelLevel -= 0.5f;
             }
+        }
+        }
+
+        else{
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                if (fuelLevel > 0)
+                {
+                    m_Rigidbody.AddRelativeForce((Vector3.left + Vector3.forward) * m_Thrust);
+                    fuelLevel -= 0.1f;
+                }
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                if (fuelLevel > 0)
+                {
+                    m_Rigidbody.AddRelativeForce((Vector3.right + Vector3.forward) * m_Thrust);
+                    fuelLevel -= 0.1f;
+                }
+            }
+        }
+
+        //if out of bounds, this could trigger a lose that way if the player drifts too far they can restart. Values can be adjusted
+        if( transform.position.z  > 5000 || transform.position.z < -5000)
+        {
+            //trigger lose scene
         }
 
         foreach (GameObject planet in planets)
