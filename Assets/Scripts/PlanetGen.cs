@@ -10,6 +10,12 @@ enum TileType
 }
 public class PlanetGen : MonoBehaviour
 {
+    //Some GameObjects to manipulate.
+    public GameObject planet;
+    public GameObject spaceship;
+    public GameObject sun;
+
+
     public int width = 10; //Size of level, in 1000s
     public int length = 10; //Size of level, in 1000s
     // Start is called before the first frame update
@@ -17,30 +23,18 @@ public class PlanetGen : MonoBehaviour
     //field/variables
     private int num_planets = 0;
     private List<int[]> pos_planets;
+    private int function_calls = 0;
 
-    private void Shuffle<T>(ref List<T> list)
-    {
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = Random.Range(0, n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-
-    }
     void Start()
     {
-
+        Instantiate(sun, new Vector3(-5000,0,(length/2)*2000), Quaternion.identity);
+        Instantiate(spaceship, new Vector3(-5000,0,(length/2)*2000), Quaternion.identity);
         num_planets = 0;
         List<TileType>[,] grid = new List<TileType>[width,length]; //act 10,000 x 10,000 but for simplicity we can just update values by 1000
         List<int[]> unassigned = new List<int[]>();
         
         num_planets = width * length / 20 + 1;
         pos_planets = new List<int[]>();
-
         bool success = false;
         while (!success)
         {
@@ -48,18 +42,26 @@ public class PlanetGen : MonoBehaviour
             {
                 while (true)
                 {
-                    int wr = Random.Range(1,width - 1);
-                    int lr = Random.Range(1,length - 1);
-
+                    int wr = Random.Range(2,width - 1);
+                    int lr = Random.Range(2,length - 1);
                     if(grid[wr,lr] == null)
                     {
                         grid[wr, lr] = new List<TileType> {TileType.PLANET };
-                        pos_planet.Add(new int [2] {wr, lr });
+                        pos_planets.Add(new int [2] {wr, lr });
                         break;
                     }
                 }
-
-
+            }
+            for (int w = 0; w < width; w++)
+            {
+                for (int l = 0; l < length; l++)
+                {
+                        if (grid[w, l] == null)
+                        {
+                            grid[w, l] = new List<TileType> { TileType.SPACE };
+                            unassigned.Add(new int[] { w, l });
+                        }
+                }
             }
 
             success = BackTrackingSearch(grid, unassigned);
@@ -68,15 +70,13 @@ public class PlanetGen : MonoBehaviour
                 Debug.Log("Could not find valid solution, the big bang will happen again");
                 unassigned.Clear();
                 grid = new List<TileType>[width, length];
+                pos_planets = new List<int[]>();
             }
-
         }
-        //This will place planets in the grid/world.
-        BigBang(grid);
-
+        BigBang(pos_planets);
     }
     
-    //We never want two planets on the same row since they could orbit on the same direction and crash into another
+    //We never want two planets on the same row since they could orbit on the same direction
     bool ArePlanetsOnTheSameRow(List<TileType>[,] grid)
     {
         int count = 0;
@@ -85,28 +85,21 @@ public class PlanetGen : MonoBehaviour
         {
             for (int l = 0; l < length-1; l++)
             {
-
+                
                 if(grid[w,l][0] == TileType.PLANET)
                 {
-
                     count += 1;
-
                 }
             }
-            
             if(count > 1)
-            {
-
-                return true;
-
-            }
-
+                {
+                    return true;
+                }
+            else{ count = 0;}
         }
-
         return false;
-
     }
-    //Code I still need to review should work ideally but good to go voer it since it still needs to be modified to our specs.
+
     bool CheckConsistency(List<TileType>[,] grid, int[] cell_pos, TileType t)
     {
         int w = cell_pos[0];
@@ -125,7 +118,6 @@ public class PlanetGen : MonoBehaviour
 
     bool BackTrackingSearch(List<TileType>[,] grid,  List<int[]> unassigned)
     {
-
         if (function_calls++ > 100000)       
             return false;
 
@@ -134,7 +126,6 @@ public class PlanetGen : MonoBehaviour
 
         int[] cell_pos = unassigned[0];
         unassigned.RemoveAt(0);
-        
         foreach(TileType t in grid[cell_pos[0],cell_pos[1]]){
 
             if(CheckConsistency(grid ,cell_pos , t )){
@@ -150,6 +141,24 @@ public class PlanetGen : MonoBehaviour
             }
         }
         return false;
-
     }
+
+    public void BigBang(List<int[]> pos_pfab)
+    {
+
+       for(int i = 0; i < pos_pfab.Count; i++)
+       {
+            int x = pos_pfab[i][0];
+            int y = pos_pfab[i][1];
+            var speed = Random.Range(1,10);
+            planet.GetComponent<Orbit>().speed = speed/10f;
+            //planet.transform
+            Instantiate(planet, new Vector3(x*2000,0,y*2000), Quaternion.identity);
+       }
+    
+    }
+
+
+
+
 }

@@ -22,6 +22,9 @@ public class SpaceshipController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         planets = GameObject.FindGameObjectsWithTag("Planet");
         fuelLevelFull = fuelLevel;
+        fuel_display =  GameObject.Find("Fuel").GetComponent<TextMeshProUGUI>();
+        speed_display =  GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
+        timer_display =  GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,14 @@ public class SpaceshipController : MonoBehaviour
         timer_display.text = "Time left: " + +Mathf.Round((30 - Time.realtimeSinceStartup));
         fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel / fuelLevelFull) * 100);
         speed_display.text = "Speed: " + Mathf.Round(m_Rigidbody.velocity.magnitude);
+
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )//Boost
+        {
+
+            m_Rigidbody.AddRelativeForce(Vector3.forward * 2 * m_Thrust);
+            fuelLevel -= 1f;
+
+        }
 
         if (Input.GetKey(KeyCode.UpArrow)) //Switch thrusters/ direction force is being added
         {
