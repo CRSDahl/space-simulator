@@ -14,7 +14,7 @@ public class PlanetGen : MonoBehaviour
     public GameObject planet;
     public GameObject spaceship;
     public GameObject sun;
-
+    public GameObject ship;
 
     public int width = 10; //Size of level, in 1000s
     public int length = 10; //Size of level, in 1000s
@@ -25,7 +25,7 @@ public class PlanetGen : MonoBehaviour
     private List<int[]> pos_planets;
     private int function_calls = 0;
 
-    void Start()
+    void Awake()
     {
         Instantiate(sun, new Vector3(width*2000,0,(length/2)*2000), Quaternion.identity);
         //Instantiate(spaceship, new Vector3(-5000,0,(length/2)*2000), Quaternion.identity);
