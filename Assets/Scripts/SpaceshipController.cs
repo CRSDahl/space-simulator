@@ -38,8 +38,8 @@ public class SpaceshipController : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )//Boost
         {
 
-            m_Rigidbody.AddRelativeForce(Vector3.forward * 2 * m_Thrust);
-            fuelLevel -= 1f;
+            m_Rigidbody.AddRelativeForce(Vector3.right * 2 * m_Thrust);
+            fuelLevel -= 0.8f;
 
         }
 
@@ -50,7 +50,7 @@ public class SpaceshipController : MonoBehaviour
         {
             if (fuelLevel > 0)
             {
-                m_Rigidbody.AddRelativeForce(Vector3.left * (m_Thrust * 1.5f));
+                m_Rigidbody.AddRelativeForce(Vector3.forward * (m_Thrust * 1.5f));
                 fuelLevel -= 0.5f;
             }
         }
@@ -58,7 +58,7 @@ public class SpaceshipController : MonoBehaviour
         {
             if (fuelLevel > 0)
             {
-                m_Rigidbody.AddRelativeForce(Vector3.right * (m_Thrust * 1.5f));
+                m_Rigidbody.AddRelativeForce(Vector3.back * (m_Thrust * 1.5f));
                 fuelLevel -= 0.5f;
             }
         }
@@ -70,7 +70,7 @@ public class SpaceshipController : MonoBehaviour
             {
                 if (fuelLevel > 0)
                 {
-                    m_Rigidbody.AddRelativeForce((Vector3.left + Vector3.forward) * m_Thrust);
+                    m_Rigidbody.AddRelativeForce((Vector3.forward + Vector3.right) * m_Thrust);
                     fuelLevel -= 0.1f;
                 }
             }
@@ -78,7 +78,7 @@ public class SpaceshipController : MonoBehaviour
             {
                 if (fuelLevel > 0)
                 {
-                    m_Rigidbody.AddRelativeForce((Vector3.right + Vector3.forward) * m_Thrust);
+                    m_Rigidbody.AddRelativeForce((Vector3.back + Vector3.right) * m_Thrust);
                     fuelLevel -= 0.1f;
                 }
             }
