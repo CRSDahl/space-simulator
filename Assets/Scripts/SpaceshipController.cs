@@ -35,54 +35,34 @@ public class SpaceshipController : MonoBehaviour
         fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel / fuelLevelFull) * 100);
         speed_display.text = "Speed: " + Mathf.Round(m_Rigidbody.velocity.magnitude);
 
-        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) )//Boost
+        if(Input.GetKey(KeyCode.UpArrow) )
         {
+            if (fuelLevel > 0){
+                
+                m_Rigidbody.AddRelativeForce(Vector3.forward * m_Thrust);
+                fuelLevel -= 0.1f;
 
-            m_Rigidbody.AddRelativeForce(Vector3.right * 2 * m_Thrust);
-            fuelLevel -= 0.8f;
+            }
 
         }
 
-        if (Input.GetKey(KeyCode.UpArrow)) //Switch thrusters/ direction force is being added
-        {
-
-            if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             if (fuelLevel > 0)
             {
-                m_Rigidbody.AddRelativeForce(Vector3.forward * (m_Thrust * 1.5f));
-                fuelLevel -= 0.5f;
+                m_Rigidbody.AddRelativeForce(Vector3.left * m_Thrust);
+                fuelLevel -= 0.1f;
             }
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             if (fuelLevel > 0)
             {
-                m_Rigidbody.AddRelativeForce(Vector3.back * (m_Thrust * 1.5f));
-                fuelLevel -= 0.5f;
+                m_Rigidbody.AddRelativeForce(Vector3.right * m_Thrust);
+                fuelLevel -= 0.1f;
             }
-        }
         }
 
-        else{
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                if (fuelLevel > 0)
-                {
-                    m_Rigidbody.AddRelativeForce((Vector3.forward + Vector3.right) * m_Thrust);
-                    fuelLevel -= 0.1f;
-                }
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                if (fuelLevel > 0)
-                {
-                    m_Rigidbody.AddRelativeForce((Vector3.back + Vector3.right) * m_Thrust);
-                    fuelLevel -= 0.1f;
-                }
-            }
-        }
 
         //if out of bounds, this could trigger a lose that way if the player drifts too far they can restart. Values can be adjusted
         if( transform.position.z  > 5000 || transform.position.z < -5000)
@@ -90,16 +70,5 @@ public class SpaceshipController : MonoBehaviour
             //trigger lose scene
         }
 
-        foreach (GameObject planet in planets)
-        {
-            if ((planet.transform.position - transform.position).magnitude < 5000)
-            {
-                Vector3 force = ((planet.transform.position - transform.position).normalized * 120000000) / Mathf.Pow((planet.transform.position - transform.position).magnitude, 2.0f);
-                //if((m_Rigidbody.velocity + force).magnitude < m_Rigidbody.velocity.magnitude) {
-                //    force *= 0.1f;
-                //}
-                m_Rigidbody.AddForce(force);
-            }
-        }
     }
 }
