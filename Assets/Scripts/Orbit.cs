@@ -18,7 +18,7 @@ public class Orbit : MonoBehaviour
         AddGravityForce(planets, ship.GetComponent<Rigidbody>() , G);
        
         var sun = GameObject.FindWithTag("Sun");
-        this.transform.RotateAround(sun.transform.position, new Vector3(0.0f, 1.0f, 0.0f),
+        this.transform.RotateAround(sun.transform.position, Vector3.up,
             speed * Time.deltaTime);
     }
 

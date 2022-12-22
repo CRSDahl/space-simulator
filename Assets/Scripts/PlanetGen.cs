@@ -14,6 +14,7 @@ public class PlanetGen : MonoBehaviour
     public GameObject planet;
     public GameObject spaceship;
     public GameObject sun;
+    public int planetsPerOrbits;
 
 
     public int width = 10; //Size of level, in 1000s
@@ -27,13 +28,12 @@ public class PlanetGen : MonoBehaviour
 
     void Awake()
     {
-        Instantiate(sun, new Vector3(width*2000,0,(length/2)*2000), Quaternion.identity);
-        //Instantiate(spaceship, new Vector3(-5000,0,(length/2)*2000), Quaternion.identity);
+        Instantiate(sun, new Vector3(10000,0,(length/2)*2000), Quaternion.identity);
         num_planets = 0;
         List<TileType>[,] grid = new List<TileType>[width,length]; //act 10,000 x 10,000 but for simplicity we can just update values by 1000
         List<int[]> unassigned = new List<int[]>();
         
-        num_planets = width * length / 20 + 1;
+        num_planets = width * length / 20 + 2;
         pos_planets = new List<int[]>();
         bool success = false;
         while (!success)
@@ -148,12 +148,19 @@ public class PlanetGen : MonoBehaviour
 
        for(int i = 0; i < pos_pfab.Count; i++)
        {
-            int x = pos_pfab[i][0];
-            int y = pos_pfab[i][1];
-            var speed = Random.Range(1,10);
-            planet.GetComponent<Orbit>().speed = speed/10f;
-            //planet.transform
-            Instantiate(planet, new Vector3(x*2000,0,y*2000), Quaternion.identity);
+            
+            
+            for(int j = 0; j < planetsPerOrbits; j++)
+            {
+                int x = pos_pfab[i][0];
+                int y = pos_pfab[i][1];
+                Vector3 pos = new Vector3( ((x+j)*2000), 0 , ((y+j)*2000));
+                if( pos != new Vector3(10000,0,(length/2)*2000)){
+                    Instantiate(planet, pos , Quaternion.identity);
+                    /*planet.transform.RotateAround(sun.transform.position, Vector3.up,
+            speed * Time.deltaTime);*/
+                }
+            }
        }
     
     }
