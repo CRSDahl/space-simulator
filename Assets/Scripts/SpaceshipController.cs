@@ -15,6 +15,11 @@ public class SpaceshipController : MonoBehaviour
     public TextMeshProUGUI speed_display;
     public TextMeshProUGUI timer_display;
     public Animator animator;
+    public ParticleSystem left_thruster;
+    public ParticleSystem right_thruster;
+    public ParticleSystem left_rear_thruster;
+    public ParticleSystem right_rear_thruster;
+    GameObject[] planets;
 
     // Start is called before the first frame update
     void Start()
@@ -40,28 +45,40 @@ public class SpaceshipController : MonoBehaviour
                 //animator.SetInteger("State", 1);
                 m_Rigidbody.AddRelativeForce(Vector3.forward * m_Thrust);
                 fuelLevel -= 0.1f;
+                left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
+                right_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
+            } 
 
-            }
-
+        } else {
+            left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = false;
+            right_rear_thruster.GetComponent<ParticleSystem>().enableEmission = false;
         }
+        
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             if (fuelLevel > 0)
             {
-                //animator.SetInteger("State", 3);
+                left_thruster.GetComponent<ParticleSystem>().enableEmission = true;
                 m_Rigidbody.AddRelativeForce(Vector3.left * m_Thrust);
                 fuelLevel -= 0.1f;
             }
+        } else {
+            left_thruster.GetComponent<ParticleSystem>().enableEmission = false;
         }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             //animator.SetInteger("State", 2);
             if (fuelLevel > 0)
             {
                 m_Rigidbody.AddRelativeForce(Vector3.right * m_Thrust);
+                right_thruster.GetComponent<ParticleSystem>().enableEmission = true;
                 fuelLevel -= 0.1f;
             }
+        }
+        else {
+            right_thruster.GetComponent<ParticleSystem>().enableEmission = false;
         }
 
 
