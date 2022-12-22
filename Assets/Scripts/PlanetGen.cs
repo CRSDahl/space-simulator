@@ -25,9 +25,9 @@ public class PlanetGen : MonoBehaviour
     private List<int[]> pos_planets;
     private int function_calls = 0;
 
-    void Start()
+    void Awake()
     {
-        Instantiate(sun, new Vector3(0,0,(length/2)*2000), Quaternion.identity);
+        Instantiate(sun, new Vector3(width*2000,0,(length/2)*2000), Quaternion.identity);
         //Instantiate(spaceship, new Vector3(-5000,0,(length/2)*2000), Quaternion.identity);
         num_planets = 0;
         List<TileType>[,] grid = new List<TileType>[width,length]; //act 10,000 x 10,000 but for simplicity we can just update values by 1000
