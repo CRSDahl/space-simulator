@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  ship: {fileID: 1831611524874773233, guid: 5939d97526edefd479f9ad42736a4a41, type: 3}
+  ship: {fileID: 9157750186267272375, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
 --- !u!54 &-147996883466579293
 Rigidbody:
   m_ObjectHideFlags: 0

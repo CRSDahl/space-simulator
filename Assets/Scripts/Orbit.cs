@@ -3,13 +3,14 @@ using UnityEngine;
 public class Orbit : MonoBehaviour
 {
     public float speed = 100f;
-    public GameObject ship;
     Rigidbody planets;
     const float G = 6674.08f;
+    GameObject ship;
 
     void Start()
     {
         planets = GetComponent<Rigidbody>();
+        ship = GameObject.FindWithTag("Player");
     }
     
     // Update is called once per frame

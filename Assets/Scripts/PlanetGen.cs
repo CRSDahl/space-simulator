@@ -148,18 +148,19 @@ public class PlanetGen : MonoBehaviour
 
        for(int i = 0; i < pos_pfab.Count; i++)
        {
+            int x = pos_pfab[i][0]*2000;
+            int y = pos_pfab[i][1]*2000;
+            Vector3 pos = new Vector3( x, 0 , y);
+            float distance =  Vector3.Distance(new Vector3(10000, 0, 10000), pos);
+            Instantiate(planet, pos , Quaternion.identity);
             
-            
-            for(int j = 0; j < planetsPerOrbits; j++)
+            for(int j = 1; j < planetsPerOrbits; j++)
             {
-                int x = pos_pfab[i][0];
-                int y = pos_pfab[i][1];
-                Vector3 pos = new Vector3( ((x+j)*2000), 0 , ((y+j)*2000));
-                if( pos != new Vector3(10000,0,(length/2)*2000)){
-                    Instantiate(planet, pos , Quaternion.identity);
-                    /*planet.transform.RotateAround(sun.transform.position, Vector3.up,
-            speed * Time.deltaTime);*/
-                }
+                float angle = 360 / planetsPerOrbits * j;
+                angle = angle * Mathf.Deg2Rad;
+                Vector3 orbit_pos = new Vector3(pos.x, 0, (distance/2) * Mathf.Sin(angle));
+                Instantiate(planet, orbit_pos, Quaternion.identity);
+                
             }
        }
     
