@@ -10,7 +10,7 @@ public class SpaceshipController : MonoBehaviour
     Rigidbody m_Rigidbody;
     public float m_Thrust = 20f;
 
-    public float fuelLevel = 100000f;
+    public float fuelLevel = 10000f;
 
     public float score = 0.0f;
     float fuelLevelFull;
@@ -69,7 +69,6 @@ public class SpaceshipController : MonoBehaviour
         if(Input.GetKey(KeyCode.UpArrow) )
         {
             if (fuelLevel > 0){
-                //animator.SetInteger("State", 1);
                 m_Rigidbody.AddRelativeForce(Vector3.forward * m_Thrust);
                 fuelLevel -= 0.1f;
                 left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
@@ -96,7 +95,6 @@ public class SpaceshipController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //animator.SetInteger("State", 2);
             if (fuelLevel > 0)
             {
                 m_Rigidbody.AddRelativeForce(Vector3.right * m_Thrust);

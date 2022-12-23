@@ -7,9 +7,13 @@ public class Orbit : MonoBehaviour
     const float G = 6674.08f;
     GameObject ship;
     private bool points;
+    public Texture2D[] textures;
+    
 
     void Start()
     {
+        var texture = textures[Random.Range(0, textures.Length-1)];
+        GetComponent<Renderer>().material.mainTexture = texture as Texture2D;
         planets = GetComponent<Rigidbody>();
         ship = GameObject.FindWithTag("Player");
         points = false;
