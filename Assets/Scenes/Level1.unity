@@ -560,7 +560,7 @@ MonoBehaviour:
   planet: {fileID: 7906085140533487573, guid: 20d55796f9485524d81b04d76bf0cead, type: 3}
   spaceship: {fileID: 1831611525653372114}
   sun: {fileID: 5509198784408997799, guid: e7257e116b303eb4ba4c1044c7f16a4f, type: 3}
-  planetsPerOrbits: 2
+  planetsPerOrbits: 1
   width: 10
   length: 10
 --- !u!4 &1554354863
@@ -779,8 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 6123279987556253554, guid: 543f85c367b24464098124fcc11a6955, type: 3}
-  fieldRadius: 2000
-  asteroidCount: 500
+  fieldRadius: 10000
+  asteroidCount: 1000
   center: {fileID: 2042001798}
 --- !u!4 &2042001800
 Transform:
@@ -790,7 +790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042001798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10000, y: 0, z: 1500}
+  m_LocalPosition: {x: 10000, y: 0, z: 5914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,7 +822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134141321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10000, y: 0, z: 3500}
+  m_LocalPosition: {x: 10000, y: 0, z: 11997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -842,8 +842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 6123279987556253554, guid: 543f85c367b24464098124fcc11a6955, type: 3}
-  fieldRadius: 2000
-  asteroidCount: 500
+  fieldRadius: 10000
+  asteroidCount: 1000
   center: {fileID: 2134141321}
 --- !u!1 &1831611525653372114 stripped
 GameObject:
@@ -908,6 +908,10 @@ PrefabInstance:
     - target: {fileID: 9157750186267272378, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750186267272381, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Thrust
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 9157750186267272381, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
       propertyPath: fuelLevel
