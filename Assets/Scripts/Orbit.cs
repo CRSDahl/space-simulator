@@ -6,11 +6,13 @@ public class Orbit : MonoBehaviour
     Rigidbody planets;
     const float G = 6674.08f;
     GameObject ship;
+    private bool points;
 
     void Start()
     {
         planets = GetComponent<Rigidbody>();
         ship = GameObject.FindWithTag("Player");
+        points = false;
     }
     
     // Update is called once per frame
@@ -22,6 +24,14 @@ public class Orbit : MonoBehaviour
         var sun = GameObject.FindWithTag("Sun");
         this.transform.RotateAround(sun.transform.position, Vector3.up,
             speed * Time.deltaTime);
+
+        if(Vector3.Distance(ship.transform.position, transform.position) <= 1000){
+            if(!points){
+                ship.GetComponent<SpaceshipController>().score += 100f;
+                points = true;
+                Debug.Log("Added Points!");
+            }
+        }
     }
 
 
