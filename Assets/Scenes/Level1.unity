@@ -560,7 +560,7 @@ MonoBehaviour:
   planet: {fileID: 7906085140533487573, guid: 20d55796f9485524d81b04d76bf0cead, type: 3}
   spaceship: {fileID: 1831611525653372114}
   sun: {fileID: 5509198784408997799, guid: e7257e116b303eb4ba4c1044c7f16a4f, type: 3}
-  planetsPerOrbits: 1
+  planetsPerOrbits: 2
   width: 10
   length: 10
 --- !u!4 &1554354863
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 6123279987556253554, guid: 543f85c367b24464098124fcc11a6955, type: 3}
-  fieldRadius: 20000
+  fieldRadius: 2000
   asteroidCount: 500
   center: {fileID: 2042001798}
 --- !u!4 &2042001800
@@ -842,7 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 6123279987556253554, guid: 543f85c367b24464098124fcc11a6955, type: 3}
-  fieldRadius: 20000
+  fieldRadius: 2000
   asteroidCount: 500
   center: {fileID: 2134141321}
 --- !u!1 &1831611525653372114 stripped

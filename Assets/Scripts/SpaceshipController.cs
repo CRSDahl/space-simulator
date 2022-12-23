@@ -66,9 +66,10 @@ public class SpaceshipController : MonoBehaviour
 
 
         //if out of bounds, this could trigger a lose that way if the player drifts too far they can restart. Values can be adjusted
-        if( transform.position.z  > 5000 || transform.position.z < -5000)
+        if( transform.position.z  > 20000 || transform.position.z < -20000 || transform.position.x > 20000 || transform.position.x < -20000 || transform.position.y > 20 || transform.position.y < -20)
         {
-            //trigger lose scene
+            fuelLevel = 0;
+            Debug.Log("You've strayed too far!");
         }
 
     }

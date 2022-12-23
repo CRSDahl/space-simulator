@@ -6,7 +6,8 @@ using UnityEngine;
 enum TileType
 {
     PLANET = 0,
-    SPACE = 1
+    SPACE = 1,
+    SUN = 2
 }
 public class PlanetGen : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlanetGen : MonoBehaviour
         num_planets = width * length / 20 + 2;
         pos_planets = new List<int[]>();
         bool success = false;
+        grid[5, 5] = new List<TileType> { TileType.SUN };
         while (!success)
         {
             for(int v = 0; v < num_planets; v++)
@@ -44,7 +46,7 @@ public class PlanetGen : MonoBehaviour
                 {
                     int wr = Random.Range(2,width - 1);
                     int lr = Random.Range(2,length - 1);
-                    if(grid[wr,lr] == null)
+                    if(grid[wr,lr] == null )
                     {
                         grid[wr, lr] = new List<TileType> {TileType.PLANET };
                         pos_planets.Add(new int [2] {wr, lr });
@@ -152,12 +154,8 @@ public class PlanetGen : MonoBehaviour
             int y = pos_pfab[i][1]*2000;
             Vector3 pos = new Vector3( x, 0 , y);
             Instantiate(planet, pos , Quaternion.identity);
-            
        }
     
     }
-
-
-
 
 }
