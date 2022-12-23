@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SpaceshipController : MonoBehaviour
 {
@@ -97,5 +99,12 @@ public class SpaceshipController : MonoBehaviour
         Debug.Log("You've crashed!");
         minimap_camera.rect = new Rect(0,0,1,1);
         game_over_text.enabled = true;
+        StartCoroutine(EndGame());
+    }
+
+    private IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("Title Screen");
     }
 }
