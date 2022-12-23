@@ -19,6 +19,7 @@ public class SpaceshipController : MonoBehaviour
     public ParticleSystem right_thruster;
     public ParticleSystem left_rear_thruster;
     public ParticleSystem right_rear_thruster;
+    public ParticleSystem explosion;
     GameObject[] planets;
 
     // Start is called before the first frame update
@@ -59,12 +60,12 @@ public class SpaceshipController : MonoBehaviour
         {
             if (fuelLevel > 0)
             {
-                left_thruster.GetComponent<ParticleSystem>().enableEmission = true;
+                right_thruster.GetComponent<ParticleSystem>().enableEmission = true;
                 m_Rigidbody.AddRelativeForce(Vector3.left * m_Thrust);
                 fuelLevel -= 0.1f;
             }
         } else {
-            left_thruster.GetComponent<ParticleSystem>().enableEmission = false;
+            right_thruster.GetComponent<ParticleSystem>().enableEmission = false;
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -73,12 +74,12 @@ public class SpaceshipController : MonoBehaviour
             if (fuelLevel > 0)
             {
                 m_Rigidbody.AddRelativeForce(Vector3.right * m_Thrust);
-                right_thruster.GetComponent<ParticleSystem>().enableEmission = true;
+                left_thruster.GetComponent<ParticleSystem>().enableEmission = true;
                 fuelLevel -= 0.1f;
             }
         }
         else {
-            right_thruster.GetComponent<ParticleSystem>().enableEmission = false;
+            left_thruster.GetComponent<ParticleSystem>().enableEmission = false;
         }
 
 
@@ -89,5 +90,10 @@ public class SpaceshipController : MonoBehaviour
             Debug.Log("You've strayed too far!");
         }
 
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        explosion.GetComponent<ParticleSystem>().enableEmission = true;
+        m_Rigidbody.drag = 20;
     }
 }
