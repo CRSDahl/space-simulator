@@ -95,6 +95,6 @@ public class SpaceshipController : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         explosion.GetComponent<ParticleSystem>().enableEmission = true;
         m_Rigidbody.drag = 20;
-        Debug.log("You've crashed!");
+        Debug.Log("You've crashed!");
     }
 }
