@@ -89,6 +89,17 @@ public class SpaceshipController : MonoBehaviour
         {
             fuelLevel = 0;
             Debug.Log("You've strayed too far!");
+            minimap_camera.rect = new Rect(0,0,1,1);
+            game_over_text.enabled = true;
+            StartCoroutine(EndGame());
+        }
+
+        if(fuelLevel <= 0)
+        {
+            Debug.Log("You've run out of fuel!");
+            minimap_camera.rect = new Rect(0,0,1,1);
+            game_over_text.enabled = true;
+            StartCoroutine(EndGame());
         }
 
     }
