@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SpaceshipController : MonoBehaviour
 {
@@ -9,14 +10,16 @@ public class SpaceshipController : MonoBehaviour
     Rigidbody m_Rigidbody;
     public float m_Thrust = 20f;
 
-    public float fuelLevel = 100000f;
+    public float fuelLevel = 10000f;
 
+    public float score = 0.0f;
     float fuelLevelFull;
 
     public TextMeshProUGUI fuel_display;
     public TextMeshProUGUI speed_display;
     public TextMeshProUGUI timer_display;
     public TextMeshProUGUI game_over_text;
+    public TextMeshProUGUI score_text;
     public Animator animator;
     public ParticleSystem left_thruster;
     public ParticleSystem right_thruster;
@@ -26,25 +29,46 @@ public class SpaceshipController : MonoBehaviour
     public Camera minimap_camera;
     GameObject[] planets;
 
+    public Button restart;
+    public Button menu;
+
+    private float timer;
+
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         fuelLevelFull = fuelLevel;
+        timer = 30.0f;
+        restart.onClick.AddListener(RestartGame);
+        menu.onClick.AddListener(LoadMenu);
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer -= Time.deltaTime;
+        if(timer <= 0){
+            m_Rigidbody.drag = 20;
+            Debug.Log("Time's up!");
+            minimap_camera.rect = new Rect(0,0,1,1);
+            game_over_text.text = "Time's Up! Youre Score: " + score;
+            game_over_text.enabled = true;
+            restart.gameObject.SetActive(true);
+            menu.gameObject.SetActive(true);
+            return;
+        }
         m_Rigidbody.angularVelocity = Vector3.zero;
-        timer_display.text = "Time left: " + +Mathf.Round((30 - Time.realtimeSinceStartup));
+        timer_display.text = "Time left: " + +Mathf.Round((timer));
         fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel / fuelLevelFull) * 100);
         speed_display.text = "Speed: " + Mathf.Round(m_Rigidbody.velocity.magnitude);
+        score_text.text = "Score: " + score;
+        
+
 
         if(Input.GetKey(KeyCode.UpArrow) )
         {
             if (fuelLevel > 0){
-                //animator.SetInteger("State", 1);
                 m_Rigidbody.AddRelativeForce(Vector3.forward * m_Thrust);
                 fuelLevel -= 0.1f;
                 left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
@@ -71,7 +95,6 @@ public class SpaceshipController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //animator.SetInteger("State", 2);
             if (fuelLevel > 0)
             {
                 m_Rigidbody.AddRelativeForce(Vector3.right * m_Thrust);
@@ -109,6 +132,7 @@ public class SpaceshipController : MonoBehaviour
         m_Rigidbody.drag = 20;
         Debug.Log("You've crashed!");
         minimap_camera.rect = new Rect(0,0,1,1);
+        game_over_text.text = "You've Crashed!";
         game_over_text.enabled = true;
         StartCoroutine(EndGame());
     }
@@ -116,6 +140,14 @@ public class SpaceshipController : MonoBehaviour
     private IEnumerator EndGame()
     {
         yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("Title Screen");
+    }
+
+    private void RestartGame(){
+        SceneManager.LoadScene("Level1");
+    }
+
+    private void LoadMenu(){
         SceneManager.LoadScene("Title Screen");
     }
 }

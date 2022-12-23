@@ -112,6 +112,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  textures:
+  - {fileID: 2800000, guid: 89ab55731ef33eb45a4780ea56be0e92, type: 3}
+  - {fileID: 2800000, guid: 9a65a1e2996b7fc47927f72856a14e0f, type: 3}
+  - {fileID: 2800000, guid: 68f1345315eaffb4cb40ab12db8dcf6f, type: 3}
+  - {fileID: 2800000, guid: 34b453f311374104c827c850792b920d, type: 3}
+  - {fileID: 2800000, guid: 847950da20c6cff40846e8b8d46fcee1, type: 3}
+  - {fileID: 2800000, guid: 73a08e5c445a97043b5cb6976eaa4f90, type: 3}
+  - {fileID: 2800000, guid: d1da9066059c004478ff3ef6fdd5c02b, type: 3}
+  - {fileID: 2800000, guid: 2b64e91333249354b93bd89060c702ec, type: 3}
+  - {fileID: 2800000, guid: 79f125a884063974fafcb43641980ae5, type: 3}
 --- !u!54 &-147996883466579293
 Rigidbody:
   m_ObjectHideFlags: 0
