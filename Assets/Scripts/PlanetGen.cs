@@ -34,7 +34,7 @@ public class PlanetGen : MonoBehaviour
         List<TileType>[,] grid = new List<TileType>[width,length]; //act 10,000 x 10,000 but for simplicity we can just update values by 1000
         List<int[]> unassigned = new List<int[]>();
         
-        num_planets = 10;
+        num_planets = 8;
         pos_planets = new List<int[]>();
         bool success = false;
         grid[5, 5] = new List<TileType> { TileType.SUN };
@@ -44,8 +44,8 @@ public class PlanetGen : MonoBehaviour
             {
                 while (true)
                 {
-                    int wr = Random.Range(0,width);
-                    int lr = Random.Range(0,length);
+                    int wr = Random.Range(2,width);
+                    int lr = Random.Range(2,length);
                     if(grid[wr,lr] == null )
                     {
                         grid[wr, lr] = new List<TileType> {TileType.PLANET };
