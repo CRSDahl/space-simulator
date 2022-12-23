@@ -10,7 +10,7 @@ public class SpaceshipController : MonoBehaviour
     Rigidbody m_Rigidbody;
     public float m_Thrust = 20f;
 
-    public float fuelLevel = 10000f;
+    public float fuelLevel = 100f;
 
     public float score = 0.0f;
     float fuelLevelFull;
@@ -60,7 +60,7 @@ public class SpaceshipController : MonoBehaviour
         }
         m_Rigidbody.angularVelocity = Vector3.zero;
         timer_display.text = "Time left: " + +Mathf.Round((timer));
-        fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel / fuelLevelFull) * 100);
+        fuel_display.text = "Fuel: " + Mathf.Round((fuelLevel/fuelLevelFull * 100));
         speed_display.text = "Speed: " + Mathf.Round(m_Rigidbody.velocity.magnitude);
         score_text.text = "Score: " + score;
         

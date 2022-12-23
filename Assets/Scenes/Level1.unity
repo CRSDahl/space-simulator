@@ -2257,7 +2257,7 @@ PrefabInstance:
       objectReference: {fileID: 1787959306}
     - target: {fileID: 9157750186267272381, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
       propertyPath: fuelLevel
-      value: 100000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 9157750186267272381, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
       propertyPath: score_text
