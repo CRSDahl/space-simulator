@@ -857,6 +857,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9157750185719820907, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750185719820908, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 84.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750185719820909, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: field of view
+      value: 88.3
+      objectReference: {fileID: 0}
     - target: {fileID: 9157750186267272375, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
       propertyPath: m_Name
       value: SpaceshipModel
