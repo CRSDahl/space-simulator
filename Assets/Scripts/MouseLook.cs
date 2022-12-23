@@ -3,16 +3,30 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
+    public float mouseSensitivity = 100.0f;
+    public float clampAngle = 80.0f;
 
-    public Transform player;
-    public float distanceFromPlayer = 2f;
-    public float height = 2;
-    void LateUpdate()
+
+    private float rotY = 0.0f; // rotation around the up/y axis
+    private float rotX = 0.0f; // rotation around the right/x axis
+
+    void Start()
     {
-        
-        transform.position = player.position - player.forward * distanceFromPlayer;
-        transform.LookAt(player.position);
-        transform.position = new Vector3(transform.position.x, height+transform.position.y, transform.position.z);
+        Vector3 rot = transform.localRotation.eulerAngles;
+        rotY = rot.y;
+        rotX = rot.x;
+    }
+
+    void Update()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+
+        rotY += mouseX * mouseSensitivity * Time.deltaTime;
+
+        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
+
     }
 }
-

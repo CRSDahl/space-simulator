@@ -14,12 +14,14 @@ public class SpaceshipController : MonoBehaviour
     public TextMeshProUGUI fuel_display;
     public TextMeshProUGUI speed_display;
     public TextMeshProUGUI timer_display;
+    public TextMeshProUGUI game_over_text;
     public Animator animator;
     public ParticleSystem left_thruster;
     public ParticleSystem right_thruster;
     public ParticleSystem left_rear_thruster;
     public ParticleSystem right_rear_thruster;
     public ParticleSystem explosion;
+    public Camera minimap_camera;
     GameObject[] planets;
 
     // Start is called before the first frame update
@@ -27,9 +29,6 @@ public class SpaceshipController : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         fuelLevelFull = fuelLevel;
-        fuel_display =  GameObject.Find("Fuel").GetComponent<TextMeshProUGUI>();
-        speed_display =  GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
-        timer_display =  GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -96,5 +95,7 @@ public class SpaceshipController : MonoBehaviour
         explosion.GetComponent<ParticleSystem>().enableEmission = true;
         m_Rigidbody.drag = 20;
         Debug.Log("You've crashed!");
+        minimap_camera.rect = new Rect(0,0,1,1);
+        game_over_text.enabled = true;
     }
 }
