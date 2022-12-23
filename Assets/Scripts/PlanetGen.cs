@@ -6,7 +6,8 @@ using UnityEngine;
 enum TileType
 {
     PLANET = 0,
-    SPACE = 1
+    SPACE = 1,
+    SUN = 2
 }
 public class PlanetGen : MonoBehaviour
 {
@@ -28,23 +29,24 @@ public class PlanetGen : MonoBehaviour
 
     void Awake()
     {
-        Instantiate(sun, new Vector3(10000,0,(length/2)*2000), Quaternion.identity);
+        Instantiate(sun, new Vector3((length/2)*2000,0,(length/2)*2000), Quaternion.identity);
         num_planets = 0;
         List<TileType>[,] grid = new List<TileType>[width,length]; //act 10,000 x 10,000 but for simplicity we can just update values by 1000
         List<int[]> unassigned = new List<int[]>();
         
-        num_planets = width * length / 20 + 2;
+        num_planets = 8;
         pos_planets = new List<int[]>();
         bool success = false;
+        grid[5, 5] = new List<TileType> { TileType.SUN };
         while (!success)
         {
             for(int v = 0; v < num_planets; v++)
             {
                 while (true)
                 {
-                    int wr = Random.Range(2,width - 1);
-                    int lr = Random.Range(2,length - 1);
-                    if(grid[wr,lr] == null)
+                    int wr = Random.Range(2,width);
+                    int lr = Random.Range(2,length);
+                    if(grid[wr,lr] == null )
                     {
                         grid[wr, lr] = new List<TileType> {TileType.PLANET };
                         pos_planets.Add(new int [2] {wr, lr });
@@ -86,7 +88,7 @@ public class PlanetGen : MonoBehaviour
             for (int l = 0; l < length-1; l++)
             {
                 
-                if(grid[w,l][0] == TileType.PLANET)
+                if(grid[l,w][0] == TileType.PLANET)
                 {
                     count += 1;
                 }
@@ -151,22 +153,9 @@ public class PlanetGen : MonoBehaviour
             int x = pos_pfab[i][0]*2000;
             int y = pos_pfab[i][1]*2000;
             Vector3 pos = new Vector3( x, 0 , y);
-            float distance =  Vector3.Distance(new Vector3(10000, 0, 10000), pos);
             Instantiate(planet, pos , Quaternion.identity);
-            
-            for(int j = 1; j < planetsPerOrbits; j++)
-            {
-                float angle = 360 / planetsPerOrbits * j;
-                angle = angle * Mathf.Deg2Rad;
-                Vector3 orbit_pos = new Vector3(pos.x, 0, (distance/2) * Mathf.Sin(angle));
-                Instantiate(planet, orbit_pos, Quaternion.identity);
-                
-            }
        }
     
     }
-
-
-
 
 }

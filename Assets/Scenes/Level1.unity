@@ -779,8 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 6123279987556253554, guid: 543f85c367b24464098124fcc11a6955, type: 3}
-  fieldRadius: 2000
-  asteroidCount: 500
+  fieldRadius: 10000
+  asteroidCount: 1000
   center: {fileID: 2042001798}
 --- !u!4 &2042001800
 Transform:
@@ -790,7 +790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042001798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10000, y: 0, z: 1500}
+  m_LocalPosition: {x: 10000, y: 0, z: 5914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,7 +822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134141321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10000, y: 0, z: 3500}
+  m_LocalPosition: {x: 10000, y: 0, z: 11997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -842,8 +842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 6123279987556253554, guid: 543f85c367b24464098124fcc11a6955, type: 3}
-  fieldRadius: 2000
-  asteroidCount: 500
+  fieldRadius: 10000
+  asteroidCount: 1000
   center: {fileID: 2134141321}
 --- !u!1 &1831611525653372114 stripped
 GameObject:
@@ -857,6 +857,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 414167196544658709, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 414167196544658709, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 414167196544658709, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 700784935234353306, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 775407826961809309, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077691211400722351, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358515657754275304, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386540888031079458, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498443942832080126, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363921666817453005, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750185719820907, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750185719820908, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4624
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750185719820908, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4949
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750185719820909, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: field of view
+      value: 60.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9157750186267272375, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
       propertyPath: m_Name
       value: SpaceshipModel
@@ -909,5 +965,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9157750186267272381, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Thrust
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157750186267272381, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: fuelLevel
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161222690915482291, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5440380879253148475, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 21532be5facfeb44eb90be82a13e54f7, type: 3}
