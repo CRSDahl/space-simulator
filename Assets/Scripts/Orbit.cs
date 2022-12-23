@@ -36,7 +36,6 @@ public class Orbit : MonoBehaviour
         Vector3 direction = difference.normalized;
         Vector3 force = direction * magnitude;
         
-        if(force != null)
         rb.AddForce(force);
     }
 }

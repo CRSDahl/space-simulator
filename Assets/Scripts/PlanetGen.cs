@@ -29,7 +29,7 @@ public class PlanetGen : MonoBehaviour
 
     void Awake()
     {
-        Instantiate(sun, new Vector3((length/2)*2000,0,(length/2)*2000), Quaternion.identity);
+        Instantiate(sun, new Vector3((length/2)*1000,0,(length/2)*1000), Quaternion.identity);
         num_planets = 0;
         List<TileType>[,] grid = new List<TileType>[width,length]; //act 10,000 x 10,000 but for simplicity we can just update values by 1000
         List<int[]> unassigned = new List<int[]>();
@@ -37,15 +37,15 @@ public class PlanetGen : MonoBehaviour
         num_planets = 8;
         pos_planets = new List<int[]>();
         bool success = false;
-        grid[5, 5] = new List<TileType> { TileType.SUN };
         while (!success)
         {
+            grid[5, 5] = new List<TileType> { TileType.SUN };
             for(int v = 0; v < num_planets; v++)
             {
                 while (true)
                 {
-                    int wr = Random.Range(2,width);
-                    int lr = Random.Range(2,length);
+                    int wr = Random.Range(1,width);
+                    int lr = Random.Range(1,length);
                     if(grid[wr,lr] == null )
                     {
                         grid[wr, lr] = new List<TileType> {TileType.PLANET };
@@ -102,6 +102,7 @@ public class PlanetGen : MonoBehaviour
         return false;
     }
 
+
     bool CheckConsistency(List<TileType>[,] grid, int[] cell_pos, TileType t)
     {
         int w = cell_pos[0];
@@ -150,8 +151,8 @@ public class PlanetGen : MonoBehaviour
 
        for(int i = 0; i < pos_pfab.Count; i++)
        {
-            int x = pos_pfab[i][0]*2000;
-            int y = pos_pfab[i][1]*2000;
+            int x = pos_pfab[i][0]*1000;
+            int y = pos_pfab[i][1]*1000;
             Vector3 pos = new Vector3( x, 0 , y);
             Instantiate(planet, pos , Quaternion.identity);
        }
