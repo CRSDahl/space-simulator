@@ -46,13 +46,13 @@ public class SpaceshipController : MonoBehaviour
                 //animator.SetInteger("State", 1);
                 m_Rigidbody.AddRelativeForce(Vector3.forward * m_Thrust);
                 fuelLevel -= 0.1f;
-                //left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
-                //right_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
+                left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
+                right_rear_thruster.GetComponent<ParticleSystem>().enableEmission = true;
             } 
 
         } else {
-            //left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = false;
-            //right_rear_thruster.GetComponent<ParticleSystem>().enableEmission = false;
+            left_rear_thruster.GetComponent<ParticleSystem>().enableEmission = false;
+            right_rear_thruster.GetComponent<ParticleSystem>().enableEmission = false;
         }
         
 
