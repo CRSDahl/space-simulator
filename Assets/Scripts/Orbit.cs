@@ -16,6 +16,7 @@ public class Orbit : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+    
         AddGravityForce(planets, ship.GetComponent<Rigidbody>() , G);
        
         var sun = GameObject.FindWithTag("Sun");
@@ -35,6 +36,7 @@ public class Orbit : MonoBehaviour
         Vector3 direction = difference.normalized;
         Vector3 force = direction * magnitude;
         
+        if(force != null)
         rb.AddForce(force);
     }
 }
